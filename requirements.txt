@@ -1,0 +1,15 @@
+bitsandbytes
+accelerate
+peft
+trl
+triton
+cut_cross_entropy
+unsloth_zoo
+sentencepiece
+protobuf
+datasets
+hf_transfer
+unsloth
+tqdm
+pandas
+transformers
