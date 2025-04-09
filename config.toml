@@ -1,11 +1,11 @@
 [args]
 strategy = "train" # train | test
-data_path = "./data.xlsx" # xlsx、csv、json、parquet
-train_column = "text"
+data_path = "data.xlsx" # xlsx、csv、json、parquet
+train_column = "text" # 训练文件的列名
 max_new_tokens = 100 # label的最大值
 
 [Pretrained]
-model_name = "Qwen/Qwen2.5-7B"
+model_name = "Qwen2.5-7B" # 预训练大模型的文件夹名字
 load_in_4bit = false # 启动4K量化 2-4%
 fast_inference = false # 加速推理
 max_seq_length = 2048 # 输入的最大token
@@ -22,7 +22,7 @@ num_train_epochs = 3
 learning_rate = 1e-5
 logging_steps = 100
 save_total_limit = 3
-output_dir = "/app/output" # 训练的时候 这个目录是保持训练后的模型地址。如果测试的时候，那么这个目录就是加载你的模型
+output_dir = "output" # 训练的时候 这个目录是保持训练后的模型地址。如果测试的时候，那么这个目录就是加载你的模型
 packing = false
 
 [Peft]

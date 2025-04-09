@@ -1,19 +1,27 @@
 import os
 import pprint
 import tomllib
+from os import path
 
 import pandas as pd
 
-with open("config.toml", "rb") as f:
+llm = os.environ["LLM"]
+
+with open(path.join(llm, "config.toml"), "rb") as f:
     config = tomllib.load(f)
 
 if "Envs" in config:
     for k, v in config['Envs'].items():
         os.environ[k] = str(v)
 
+if not config["Pretrained"]["model_name"].startswith("/"):
+    config["Pretrained"]["model_name"] = path.join(llm, config["Pretrained"]["model_name"])
+
 pprint.pprint(config)
 
 data = config['args']['data_path']
+if not data.startswith("/"):
+    data = path.join(llm, data)
 
 suffix = os.path.splitext(data)[-1]
 

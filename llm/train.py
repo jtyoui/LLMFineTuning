@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 import torch
 from datasets import Dataset
@@ -5,6 +7,7 @@ from tqdm import tqdm
 from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
 
+llm = os.environ["LLM"]
 
 class FineTuning:
     def __init__(self, config):
@@ -23,14 +26,13 @@ class FineTuning:
 
         column = self.config['args']['train_column']
 
-        dataset = dataset.map(lambda x: {"text": [i + eos for i in x[column]]}, batched=True,
-                              remove_columns=df.columns.tolist())
+        dataset = dataset.map(lambda x: {"text": [i + eos for i in x[column]]}, batched=True,remove_columns=df.columns.tolist())
 
         print(dataset["text"][0])
 
         trainer = SFTTrainer(model=self.model, processing_class=self.tokenizer, train_dataset=dataset, args=self.args)
         trainer.train()
-        save_model = self.config['SFTConfig']['output_dir']
+        save_model = os.path.join(llm, self.config['SFTConfig']['output_dir'])
         self.model.save_pretrained(save_model)
         self.tokenizer.save_pretrained(save_model)
 

@@ -13,3 +13,6 @@ unsloth
 tqdm
 pandas
 transformers
+openpyxl
+pyarrow
+fastparquet
