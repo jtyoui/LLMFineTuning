@@ -2,8 +2,8 @@ import pandas as pd
 import torch
 from datasets import Dataset
 from tqdm import tqdm
-from trl import SFTTrainer, SFTConfig
 from unsloth import FastLanguageModel
+from trl import SFTTrainer, SFTConfig
 
 
 class FineTuning:
@@ -49,5 +49,5 @@ class FineTuning:
             decode = self.tokenizer.batch_decode(predict, skip_special_tokens=True)[0]
             result = decode[len(text):].strip()
             results.append(result)
-        df["LLM预测值"] = results
+        df["LLM Predict"] = results
         df.to_excel(save, index=False)

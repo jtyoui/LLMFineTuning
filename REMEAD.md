@@ -1,7 +1,11 @@
 ## 执行训练
 
 ```bash
-sudo docker run -it -v .:/app --gpus=all -v ~/.cache/huggingface/hub/models--unsloth--Qwen2.5-7B:/app/pretrained llm
+sudo docker run -it --rm  --gpus=all \
+-v ./config.toml:/app/config.toml \
+-v ./output:/app/output
+-v ~/.cache/huggingface:~/.cache/huggingface \
+jtyoui/llm:pytorch2.6-cuda12.4-cudnn9
 ```
 
 ### 格式

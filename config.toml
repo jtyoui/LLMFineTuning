@@ -1,18 +1,18 @@
 [args]
 strategy = "train" # train | test
-data_path = "/app/test.xlsx" # xlsx、csv、json、parquet
+data_path = "./data.xlsx" # xlsx、csv、json、parquet
 train_column = "text"
-max_new_tokens = 100
+max_new_tokens = 100 # label的最大值
 
 [Pretrained]
-model_name = "Qwen/Qwen2.5-14B"
-load_in_4bit = false
-fast_inference = false
-max_seq_length = 3000
+model_name = "Qwen/Qwen2.5-7B"
+load_in_4bit = false # 启动4K量化 2-4%
+fast_inference = false # 加速推理
+max_seq_length = 2048 # 输入的最大token
 
 [Envs]
 CUDA_VISIBLE_DEVICES = "0"
-HF_ENDPOINT = "https://hf-mirror.com"
+HF_ENDPOINT = "https://hf-mirror.com" # 拉模型的国内代理
 UNSLOTH_RETURN_LOGITS = "1"
 
 [SFTConfig]
@@ -22,7 +22,7 @@ num_train_epochs = 3
 learning_rate = 1e-5
 logging_steps = 100
 save_total_limit = 3
-output_dir = "./model" # 训练的时候 这个目录是保持训练后的模型地址。如果测试的时候，那么这个目录就是加载你的模型
+output_dir = "/app/output" # 训练的时候 这个目录是保持训练后的模型地址。如果测试的时候，那么这个目录就是加载你的模型
 packing = false
 
 [Peft]
