@@ -46,6 +46,11 @@ else:
 
 if __name__ == '__main__':
     ## 这行要放在加载环境变量后面
+    try:
+        import unsloth
+    except ImportError:
+        pass
+
     from llm import FineTuning
 
     model = FineTuning(config)

@@ -16,3 +16,4 @@ transformers
 openpyxl
 pyarrow
 fastparquet
+vllm
